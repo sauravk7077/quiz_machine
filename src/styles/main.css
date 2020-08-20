@@ -1,0 +1,36 @@
+.radioBox.green{
+    background-color: greenyellow;
+}
+.radioBox.red{
+    background-color: orangered;
+}
+
+
+.enter{
+    animation: exit 1s;
+}
+.exit{
+    animation: enter 1s;
+}
+
+@keyframes exit{
+    0%{
+        opacity: 1;
+        width: auto;
+    }
+    100%{
+        opacity: 0;
+        width: 0;
+    }
+}
+
+@keyframes enter{
+    0%{
+        opacity: 0;
+        width: 0;
+    }
+    100%{
+        opacity: 1;
+        width: 100%;
+    }
+}
