@@ -6,17 +6,33 @@
 }
 
 
-.enter{
+.questionBox{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    transition: .5s ease;
+}
+
+.questionBox-exit{
     animation: exit 1s;
 }
-.exit{
+.questionBox-enter{
     animation: enter 1s;
 }
+
+.questBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+
 
 @keyframes exit{
     0%{
         opacity: 1;
-        width: auto;
+        width: 100%;
     }
     100%{
         opacity: 0;
@@ -27,7 +43,7 @@
 @keyframes enter{
     0%{
         opacity: 0;
-        width: 0;
+        width: 60%;
     }
     100%{
         opacity: 1;

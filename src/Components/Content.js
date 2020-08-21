@@ -16,6 +16,7 @@ class Content extends React.Component{
         }
         
         this.handleClick = this.handleClick.bind(this);
+        this.handleCheckAns = this.handleCheckAns.bind(this);
     }
 
     addPoints = ()=>{
@@ -24,19 +25,20 @@ class Content extends React.Component{
         }))
     }
 
-    handleCheckAns = (value,e)=> {
+    handleCheckAns(value,e){
         
             if(this.state.index != questions.length-1){
                 this.setState(s=>({
                     index: s.index + 1
                 }))
             }else{
-                this.setState({mode: 'finish'})
+                this.setState({index: 0,mode: 'finish'})
             }
+            this.forceUpdate();
         ;
     }
 
-    handleClick = (e)=>{
+    handleClick(e){
         this.setState({
             mode: 'quiz'
         })
@@ -51,7 +53,7 @@ class Content extends React.Component{
             display = (
                 <div>
                     <div>Points: {this.state.points}</div>
-                    <QuestBox data={questions[this.state.index]} addPoints={this.addPoints} onClick={this.handleCheckAns}/>
+                    <QuestBox key={Math.random()} data={questions[this.state.index]} addPoints={this.addPoints} onClick={this.handleCheckAns}/>
                 </div>
             )
         }else if(this.state.mode == 'finish'){
@@ -60,8 +62,8 @@ class Content extends React.Component{
             )
         }
         return (
-            <div>
-                {display}
+            <div className="questBox">
+                <div>{display}</div>
             </div>
             );
     }
