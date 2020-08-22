@@ -25,9 +25,10 @@ class Content extends React.Component{
         }))
     }
 
-    handleCheckAns(value,e){
-        
+    handleCheckAns(e){
+           console.log('h'); 
             if(this.state.index != questions.length-1){
+                console.log('index');
                 this.setState(s=>({
                     index: s.index + 1
                 }))
