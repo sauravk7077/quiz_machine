@@ -1,8 +1,9 @@
 import React from "react";
+import Button from "./Button";
 
 function Home(props) {
     return (
-        <div><button onClick={props.onClick}>Favourite Foods Quiz</button></div>
+        <div><Button onClick={props.onClick} value="Favourite Foods Quiz"></Button></div>
     )
 }
 

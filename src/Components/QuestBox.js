@@ -1,15 +1,16 @@
 import React from "react";
 import Button from "./Button";
 import Radio from "./Radio";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 
 const fadeIn = {
   opacity: "1",
-  width: "100%",
+  backgroundColor: "#000"
 };
 
 const fadeOut = {
   opacity: "0",
-  width: "60%",
+  backgroundColor: "rgba(255,255,255, 0.2)"
 };
 
 const fadeTime = 1000;
@@ -19,52 +20,42 @@ class QuestBox extends React.Component {
     this.state = {
       selected: 0,
       active: false,
-      answered: false,
       show: true,
-      key: Math.random(),
     };
-    this.checkAns = this.checkAns.bind(this);
-    this.handleNext = this.handleNext.bind(this);
-    this.changeIndex = this.changeIndex.bind(this);
   }
-  checkAns(e) {
-    if (!this.state.answered) {
+  checkAns = (e)=> {
+    if (!this.state.active) {
       this.setState({
-        active: true,
-        answered: true,
+        active: true
+      },()=>{
+        if (
+          this.props.data.answer == this.props.data.options[this.state.selected]
+        )
+          this.props.addPoints();
       });
-      console.log(this.props.data.options[this.state.selected]);
-      if (
-        this.props.data.answer == this.props.data.options[this.state.selected]
-      )
-        this.props.addPoints();
+      
     }
   };
 
-  fadeOutIn() {
-    this.handleFade();
-    setTimeout(() => {
-      this.handleFade();
-    }, fadeTime);
-  }
 
-  handleNext(e) {
-    console.log('jj');
-    this.setState({
-      answered: false,
-      enter: false,
-      selected: 0,
-      key: Math.random(),
-    });
-    console.log(this.props.onClick);
-    this.props.onClick();
+  handleNext = (e)=> {
+    this.handleFade();
+    setTimeout(()=>{
+      this.setState({
+        active: false,
+        show: true,
+        selected: 0,
+      });
+      this.props.handleNextBtn();
+    }, fadeTime);
+    
   };
 
-  handleFade() {
+  handleFade= ()=> {
     this.setState({ show: !this.state.show });
   }
 
-  changeIndex(i) {
+  changeIndex= (i)=> {
     this.setState({
       selected: i,
     });
@@ -75,15 +66,18 @@ class QuestBox extends React.Component {
     let rads = options.map((e, i) => {
       let active;
       if (this.state.active) {
-        console.log(e);
-        if (e == answer) active = "green";
-        else active = "red";
+        if (e == answer){
+         active = "green";
+        }
+        else 
+          active = "red";
       }
 
       return (
         <Radio
           key={i}
           value={e}
+          ansed={this.state.active}
           active={active}
           name="questionValue"
           onChange={(e) => {
@@ -97,13 +91,12 @@ class QuestBox extends React.Component {
       <div
         className="questionBox"
         style={this.state.show ? fadeIn : fadeOut}
-        key={this.state.key}
       >
         <div>{question}</div>
         <div id="options">{rads}</div>
-        <div>
+        <div className="buttons">
           <Button value="Check your answer" onClick={this.checkAns} />
-          <Button value="Next" onClick={this.fadeOutIn.bind(this)} />
+          <Button value="Next" disabled={!this.state.active} onClick={this.handleNext} />
         </div>
       </div>
     );

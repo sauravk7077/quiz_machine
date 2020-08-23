@@ -1,23 +1,66 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css";
+
+body{
+    background: #000;
+    color: white;
+}
+
+.radioBox{
+    border: 1px solid #fff;
+    appearance: none;
+    transition: all 200ms;
+}
+input[type='radio']{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    /* background-color only for content */
+    background-clip: content-box;
+    border: 1px solid #bbb;
+    background-color: #e7e6e7;
+    border-radius: 0%;
+    outline: none;
+}
+input[type="radio"]:checked {
+    background-color: #93e026;
+}
+
 .radioBox.green{
-    background-color: greenyellow;
+    border: 1px solid greenyellow;
+    color: greenyellow;
+}
+.radioBox.green::after{
+    font-family: "Font Awesome 5 Free";
+    content: "    " "\f00c";
+    font-weight: 900;
+    color: greenyellow;
 }
 .radioBox.red{
-    background-color: orangered;
+    border: 1px solid red;
+    color: red;
 }
+.radioBox.red::after{
+    font-family: "Font Awesome 5 Free";
+    content: "    " "\f00d";
+    font-weight: 900;
+    color: red;
+}   
 
 
 .questionBox{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+    align-items: center;
     border: 1px solid #000;
     transition: .5s ease;
-}
-
-.questionBox-exit{
-    animation: exit 1s;
-}
-.questionBox-enter{
-    animation: enter 1s;
+    box-shadow: 0 0 1px 2px orangered;
+    width: 500px;
 }
 
 .questBox{
@@ -25,14 +68,51 @@
     justify-content: center;
     align-items: center;
     margin: auto;
+    flex-basis: 600px;
+    height: 400px;
 }
 
+#options{
+    display: flex;
+    flex-wrap: wrap;
+}
+#options>.radioBox{
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
+}
+
+.buttons{
+    display: flex;
+}
+
+.btn{
+    border-radius: 1px;
+    margin: 5px;
+    color: #fff;
+    width: 200px;
+    height: 40px;
+    outline: none;
+    border: none;
+    background: orangered;
+    cursor: pointer;
+}
+.btn:hover{
+    background: hsl(16, 100%, 40%);
+}
+.btn:disabled{
+    background-color: hsl(16, 100%, 20%);
+    cursor: not-allowed;
+}
 
 
 @keyframes exit{
     0%{
         opacity: 1;
-        width: 100%;
+        width: 500px;
     }
     100%{
         opacity: 0;
@@ -47,6 +127,6 @@
     }
     100%{
         opacity: 1;
-        width: 100%;
+        width: 500px;
     }
 }

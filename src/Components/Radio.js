@@ -2,7 +2,7 @@ import React from "react"
 
 function Radio(props){
     return (
-        <div className={`radioBox  ${props.active?props.active:''}`}>
+        <div className={`radioBox  ${props.ansed?props.active:''}`}>
             <label><input type="radio" onChange={props.onChange} checked={props.checked} name={props.name}/>{props.value}</label>
         </div>
     )

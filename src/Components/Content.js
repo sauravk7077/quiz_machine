@@ -14,9 +14,14 @@ class Content extends React.Component{
             mode: 'start',
             index: 0
         }
-        
-        this.handleClick = this.handleClick.bind(this);
-        this.handleCheckAns = this.handleCheckAns.bind(this);
+    }
+
+    handleReset =()=>{
+        this.setState({
+            points: 0,
+            mode: 'quiz',
+            index: 0
+        })
     }
 
     addPoints = ()=>{
@@ -25,21 +30,17 @@ class Content extends React.Component{
         }))
     }
 
-    handleCheckAns(e){
-           console.log('h'); 
-            if(this.state.index != questions.length-1){
-                console.log('index');
-                this.setState(s=>({
-                    index: s.index + 1
-                }))
-            }else{
-                this.setState({index: 0,mode: 'finish'})
-            }
-            this.forceUpdate();
-        ;
+    handleNextQuestion=(e)=>{
+        if(this.state.index != questions.length-1){
+            this.setState(s=>({
+                index: s.index + 1
+            }))
+        }else{
+            this.setState({index: 0,mode: 'finish'})
+        }
     }
 
-    handleClick(e){
+    handleStartClick =(e)=>{
         this.setState({
             mode: 'quiz'
         })
@@ -48,18 +49,18 @@ class Content extends React.Component{
         let display;
         if(this.state.mode == 'start'){
             display = (
-                <Home onClick={this.handleClick}/>
+                <Home onClick={this.handleStartClick}/>
             )
         }else if(this.state.mode == 'quiz'){
             display = (
                 <div>
                     <div>Points: {this.state.points}</div>
-                    <QuestBox key={Math.random()} data={questions[this.state.index]} addPoints={this.addPoints} onClick={this.handleCheckAns}/>
+                    <QuestBox data={questions[this.state.index]} addPoints={this.addPoints} handleNextBtn={this.handleNextQuestion}/>
                 </div>
             )
         }else if(this.state.mode == 'finish'){
             display = (
-                <div><End onClick={this.handleClick}/></div>
+                <div><End onClick={this.handleReset}/></div>
             )
         }
         return (
