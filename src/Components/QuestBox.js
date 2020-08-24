@@ -2,15 +2,6 @@ import React from "react";
 import Button from "./Button";
 import Select from "./Select";
 
-const fadeIn = {
-  opacity: "1",
-  backgroundColor: "#000"
-};
-
-const fadeOut = {
-  opacity: "0",
-  backgroundColor: "rgba(255,255,255, 0.2)"
-};
 
 const fadeTime = 1000;
 class QuestBox extends React.Component {
