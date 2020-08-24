@@ -60,7 +60,7 @@ class Content extends React.Component{
             )
         }else if(this.state.mode == 'finish'){
             display = (
-                <div><End onClick={this.handleReset}/></div>
+                <div><End score={this.state.points} onClick={this.handleReset}/></div>
             )
         }
         return (

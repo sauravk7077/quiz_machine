@@ -155,6 +155,44 @@ Buttons
     cursor: not-allowed;
 }
 
+/* 
+----------------
+End
+----------------
+*/
+
+.end{
+    background: var(--box);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.end > p{
+    font-size: 0.9em;
+}
+
+/* 
+---------------
+Footer
+---------------
+*/
+
+footer{
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.8em;
+    color: var(--small);
+}
+
+footer a{
+    text-decoration: none;
+    color: var(--focus);
+}
+
 
 @keyframes exit{
     0%{
