@@ -87,6 +87,7 @@ header>h1{
 */
 
 .questionBox{
+    padding: 20px;
     background: var(--box);
     display: flex;
     flex-direction: column;
