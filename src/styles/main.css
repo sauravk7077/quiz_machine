@@ -1,65 +1,99 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap');
 
 body{
-    background: #000;
+    --black: rgb(4, 5, 13);
+    --bg: #181b33;
+    --box: rgb(40, 45, 73);
+    --small: #929EAF;
+    --btn: #4b22f3;
+    --focus: #B2D2F3;
+    --btn-hover: hsl(252, 90%, 34%);
+    --btn-disabled: hsl(252, 90%, 28%);
+    --green: #baff29;
+    --maroon: #ff2954;
+    background: var(--bg);
     color: white;
+    font-family: 'Roboto', sans-serif;
 }
 
-.radioBox{
+header>h1{
+    font-size: 2.2em;
+    font-family: "Merriweather", serif;
+    margin: 20px 10px;
+}
+
+.mainQuestion{
+    margin: 20px;
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Merriweather', serif;
+}
+
+
+/*
+-------------------
+ Select Buttons
+ ------------------
+*/
+.selectBtn{
+    background: transparent;
+    color: #fff;
+    flex-basis: 150px;
+    height: 40px;
+    margin: 5px;
+    outline: none;
+    cursor: pointer;
     border: 1px solid #fff;
     appearance: none;
     transition: all 200ms;
+    animation-name: enter;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
 }
-input[type='radio']{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    padding: 2px;
-    /* background-color only for content */
-    background-clip: content-box;
-    border: 1px solid #bbb;
-    background-color: #e7e6e7;
-    border-radius: 0%;
-    outline: none;
-}
-input[type="radio"]:checked {
-    background-color: #93e026;
+.selectBtn.selected{
+    background-color: hsla(231, 23%, 50%, 0.2);
+    box-shadow: 0 0 5px 1px var(--focus);
 }
 
-.radioBox.green{
-    border: 1px solid greenyellow;
-    color: greenyellow;
+
+.selectBtn.green{
+    border: 1px solid var(--green);
+    box-shadow: 0 0 5px 1px var(--green);
+    color: var(--green);
 }
-.radioBox.green::after{
+.selectBtn.green::after{
     font-family: "Font Awesome 5 Free";
     content: "    " "\f00c";
     font-weight: 900;
-    color: greenyellow;
+    color: var(--green);
 }
-.radioBox.red{
-    border: 1px solid red;
-    color: red;
+.selectBtn.red{
+    border: 1px solid var(--maroon);
+    box-shadow: 0 0 5px 1px var(--maroon);
+    color: var(--maroon);
 }
-.radioBox.red::after{
+.selectBtn.red::after{
     font-family: "Font Awesome 5 Free";
     content: "    " "\f00d";
     font-weight: 900;
-    color: red;
+    color: var(--maroon);
 }   
 
+/*
+-------------------
+ Question Box
+ ------------------
+*/
 
 .questionBox{
+    background: var(--box);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 300px;
     align-items: center;
-    border: 1px solid #000;
     transition: .5s ease;
-    box-shadow: 0 0 1px 2px orangered;
     width: 500px;
 }
 
@@ -72,18 +106,31 @@ input[type="radio"]:checked {
     height: 400px;
 }
 
+.enter{
+    transform: rotateY(0deg);
+    opacity: 1;
+    background: var(--box);
+}
+.exit{
+    transform: rotateY(90deg);
+    opacity: 0;
+    background-color: rgba(255,255,255,.2);
+    /* animation: exit 0.5s; */
+}
+
 #options{
     display: flex;
-    flex-wrap: wrap;
-}
-#options>.radioBox{
-    margin: 5px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    width: 150px;
-    height: 50px;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 350px;
 }
+
+/* 
+----------------
+Buttons
+----------------
+*/
 
 .buttons{
     display: flex;
@@ -97,14 +144,14 @@ input[type="radio"]:checked {
     height: 40px;
     outline: none;
     border: none;
-    background: orangered;
+    background: var(--btn);
     cursor: pointer;
 }
 .btn:hover{
-    background: hsl(16, 100%, 40%);
+    background: var(--btn-hover);
 }
 .btn:disabled{
-    background-color: hsl(16, 100%, 20%);
+    background-color: var(--btn-disabled);
     cursor: not-allowed;
 }
 
@@ -112,21 +159,23 @@ input[type="radio"]:checked {
 @keyframes exit{
     0%{
         opacity: 1;
-        width: 500px;
+        transform: scale(1);
+        background: var(--box);
     }
     100%{
         opacity: 0;
-        width: 0;
+        transform: scale(0);
+        background: rgba(255, 255,255, 0.2);
     }
 }
 
 @keyframes enter{
     0%{
         opacity: 0;
-        width: 60%;
+        transform: scale(0);
     }
     100%{
         opacity: 1;
-        width: 500px;
+        transform: scale(1);
     }
 }

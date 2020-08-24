@@ -54,7 +54,7 @@ class Content extends React.Component{
         }else if(this.state.mode == 'quiz'){
             display = (
                 <div>
-                    <div>Points: {this.state.points}</div>
+                    {/* <div>Points: {this.state.points}</div> */}
                     <QuestBox data={questions[this.state.index]} addPoints={this.addPoints} handleNextBtn={this.handleNextQuestion}/>
                 </div>
             )

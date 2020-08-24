@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import Radio from "./Radio";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import Select from "./Select";
 
 const fadeIn = {
   opacity: "1",
@@ -74,13 +73,14 @@ class QuestBox extends React.Component {
       }
 
       return (
-        <Radio
+        <Select
           key={i}
           value={e}
           ansed={this.state.active}
           active={active}
           name="questionValue"
-          onChange={(e) => {
+          selected={this.state.selected == i}
+          onClick={(e) => {
             this.changeIndex(i);
           }}
           checked={this.state.selected == i}
@@ -89,10 +89,9 @@ class QuestBox extends React.Component {
     });
     return (
       <div
-        className="questionBox"
-        style={this.state.show ? fadeIn : fadeOut}
+        className={`questionBox ${this.state.show?'enter':'exit'}`}
       >
-        <div>{question}</div>
+        <div className="mainQuestion">{question}</div>
         <div id="options">{rads}</div>
         <div className="buttons">
           <Button value="Check your answer" onClick={this.checkAns} />
