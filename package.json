@@ -2,6 +2,7 @@
   "name": "quiz_machine",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
